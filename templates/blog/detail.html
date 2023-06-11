@@ -1,0 +1,16 @@
+{%extends 'base.html'%}
+
+
+{%block title%}
+article:{{object.title}}
+{%endblock%}
+
+
+{%block content%}
+{%if object.image%}
+<img src="{{object.image.url}}">
+{%endif%}
+<h1>{{object.title}}</h1>
+<p>{{object.published}} by {{object.author}}</p>
+<p>{{object.content}}</p>
+{%endblock%}
