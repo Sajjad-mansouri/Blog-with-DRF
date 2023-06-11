@@ -10,8 +10,14 @@
 <body>
 <ul>
   <li><a href="{%url 'blog:articles-list'%}">Home</a></li>
-  <li><a href="#news">profile</a></li>
+  <li><a href="{%url 'account:profile'%}">profile</a></li>
   <li><a href="{%url 'contact'%}">Contact</a></li>
+  {%if request.user.is_authenticated%}
+  <li><a href="{%url 'logout'%}">Logout</a></li>
+  {%else%}
+  <li><a href="{%url 'logout'%}">Login</a></li>
+  {%endif%}
+  
 
 
 </ul>

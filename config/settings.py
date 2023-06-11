@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
     'api',
-    'users'
+    'users',
+    'accounts'
 ]
 
 MIDDLEWARE = [
@@ -137,3 +138,7 @@ AUTH_USER_MODEL='users.User'
 #media root
 
 MEDIA_ROOT=BASE_DIR/'Media'
+
+#
+LOGIN_REDIRECT_URL='account:profile'
+LOGIN_URL='login'
