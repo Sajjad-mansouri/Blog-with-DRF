@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
+from taggit.managers import TaggableManager
 
 class PublishedManger(models.Manager):
 	def get_queryset(self):
@@ -16,6 +17,7 @@ class ArticleModel(models.Model):
 	created=models.DateTimeField(auto_now_add=True)
 	updated=models.DateTimeField(auto_now=True)
 	status=models.BooleanField(default=False)
+	tags = TaggableManager()
 
 	objects=models.Manager()
 	publish_manager=PublishedManger()

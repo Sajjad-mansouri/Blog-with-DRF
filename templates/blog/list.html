@@ -2,17 +2,32 @@
 
 
 {%block title%}
+{%if tags%}
+{{tags}}
+{%else%}
 Articles
+{%endif%}
 {%endblock%}
 
 
 {%block content%}
+{%if tags%}
+<h1>Tags:{{tags}}</h1>
+<hr>
+{%endif%}
 {%for object in object_list%}
 {%if object.image%}
 <img src="{{object.image.url}}">
 {%endif%}
 <h1><a href="{%url 'blog:article-detail' object.slug %}">{{object.title}}</a></h1>
 <p>{{object.published}} by {{object.author}}</p>
+<p>tags:
+{%for tag in object.tags.all%}
+<span>{{tag.name}}{%if forloop.last %}{%else%},{%endif%}</span>
+{%empty%}
+there is no tags
+{%endfor%}
+</p>
 <p>{{object.content}}</p>
 {%endfor%}
 

@@ -7,22 +7,43 @@ article:{{object.title}}
 
 
 {%block content%}
+
+
+<!-- article -->
+
 {%if object.image%}
-<img src="{{object.image.url}}">
+	<img src="{{object.image.url}}">
 {%endif%}
 <h1>{{object.title}}</h1>
 <p>{{object.published}} by {{object.author}}</p>
-<p>{{object.content}}</p>
 
+<p>{{object.content}}</p>
 <hr>
-<h1>comments:</h1>
-{%for comment in comments%}
-<h2>{{comment.name}}</h2>
-<p>{{comment.body}}</p>
-{%empty%}
-there is no comment
+
+
+<!-- similar articles -->
+
+<h1>similar articles:</h1>
+{%for article in similar_articles%}
+<p><a href="{%url 'blog:article-detail' article.slug %}">{{article.title}}</a></p>
 {%endfor%}
 <hr>
+
+
+<!-- comments -->
+
+<h1>comments:</h1>
+{%for comment in comments%}
+	<h2>{{comment.name}}</h2>
+	<p>{{comment.body}}</p>
+{%empty%}
+	there is no comment
+{%endfor%}
+<hr>
+
+
+<!-- add comments -->
+
 <h1>Add Comment:</h1>
 <form method='post'>
 	{%csrf_token%}
