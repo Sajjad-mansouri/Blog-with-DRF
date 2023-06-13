@@ -30,10 +30,20 @@ article:{{object.title}}
 {%endfor%}
 <hr>
 
+<!-- most comments article -->
+<h1>most commented posts:</h1>
+{%get_most_commented_posts%}
+{%  get_most_commented_posts as top_articles %}
+	{%for post in top_articles%}
+	<p><a href="{% url 'blog:article-detail' post.slug %}">{{post.title}}</a></p>
+	{%endfor%}
+
+
+<hr>
 
 <!-- comments -->
 
-<h1>comments:</h1>
+<h1>comments:{{comments.count}}</h1>
 {%for comment in comments%}
 	<h2>{{comment.name}}</h2>
 	<p>{{comment.body}}</p>

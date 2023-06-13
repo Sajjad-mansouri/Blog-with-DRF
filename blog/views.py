@@ -56,7 +56,7 @@ class ArticleDetailView(FormView):
 	def form_valid(self, form):
 		"""If the form is valid, redirect to the supplied URL."""
 		form.save()
-		return HttpResponseRedirect(reverse('blog:article-detail',kwargs={'slug':'second-article'}))
+		return HttpResponseRedirect(reverse('blog:article-detail',kwargs={'slug':self.kwargs['slug']}))
 
 
 class ContactView(FormView):
