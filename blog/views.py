@@ -23,8 +23,10 @@ class ArticleListView(ListView):
 			return queryset.filter(status=True)
 	def get_context_data(self,**kwargs):
 		kwargs= super().get_context_data(**kwargs)
-		if self.kwargs['tags']:
+		try:
 			kwargs['tags']=self.kwargs['tags']
+		except:
+			pass
 		return kwargs
 	template_name='blog/list.html'
 	paginate_by=3

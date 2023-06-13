@@ -1,4 +1,5 @@
 {%extends 'base.html'%}
+{%load blog_tags %}
 
 
 {%block title%}
@@ -17,7 +18,7 @@ article:{{object.title}}
 <h1>{{object.title}}</h1>
 <p>{{object.published}} by {{object.author}}</p>
 
-<p>{{object.content}}</p>
+<p>{{object.content|markdown}}</p>
 <hr>
 
 
