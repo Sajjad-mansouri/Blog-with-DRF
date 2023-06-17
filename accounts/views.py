@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import CreateView,ListView,UpdateView
+from django.views.generic import CreateView,ListView,UpdateView,DetailView
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
+from django.contrib.auth import get_user_model
 from blog.models import ArticleModel
 from .forms import ArticleForm
 from .mixins import AuthorMixin
@@ -34,3 +35,9 @@ class UpdateArticle(LoginRequiredMixin,AuthorMixin,UpdateView):
 	template_name='blog/create-update-article.html'
 	form_class=ArticleForm
 
+
+class AccountDetail(LoginRequiredMixin,DetailView):
+	template_name='accounts/account.html'
+	def get_queryset(self):
+		return get_user_model().objects.filter(username=self.request.user.username)
+	

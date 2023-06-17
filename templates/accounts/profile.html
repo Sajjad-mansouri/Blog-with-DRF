@@ -10,7 +10,7 @@ Profile:My Articles
 <div class ='profile-menu'>
 	<a href="{%url 'account:articles-list'%}">article list</a>
 
-	<a href="">update profile</a>
+	<a href="{%url 'account:account-detail' request.user.pk%}">account</a>
 
 </div>
 <h1>My Articles</h1>
