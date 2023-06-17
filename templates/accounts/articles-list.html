@@ -17,7 +17,7 @@ Article list:
 	</tr>
 	{%for object in object_list%}
 	<tr>
-		<td>{{object.title}}</td>
+		<td><a href="{%url 'account:update-article' object.pk%}">{{object.title}}</a></td>
 		<td>{{object.author}}</td>
 		<td>{{object.slug}}</td>
 		<td>{{object.image}}</td>
