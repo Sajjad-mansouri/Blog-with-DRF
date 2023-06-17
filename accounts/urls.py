@@ -8,7 +8,9 @@ urlpatterns=[
 	path('update-article/<int:pk>/',views.UpdateArticle.as_view(),name='update-article'),
 	path('articles-list/',views.ProfileArticleList.as_view(),name='articles-list'),
 	#account
-	path('account/<int:pk>',views.AccountDetail.as_view(),name='account-detail'),
+	path('account/',views.AccountDetail.as_view(),name='account-detail'),
+	path('account/update/',views.AccountUpdate.as_view(),name='account-update'),
+
 
 
 ]

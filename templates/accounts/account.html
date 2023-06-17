@@ -1,17 +1,18 @@
 {%extends 'base.html'%}
 
 {%block title%}
-{%if object%}
-{{request.user}} Account
+{%if form%}
+Update {{request.user}} Account
 {%else%}
-Create Article
+{{request.user}} info
 {%endif%}
 {%endblock%}
 
 
 {%block content%}
-<a href="">Update account</a>
-
+{%if not form%}
+<h1>Account Information:</h1>
+<a href="{%url 'account:account-update'%}">update</a>
 <table>
 	<tr>
 		<th>first name</th>
@@ -28,4 +29,14 @@ Create Article
 	</tr>
 
 </table>
+{%else%}
+<h1>Update Account:</h1>
+<a href="{%url 'account:account-detail'%}">back</a>
+<form method='post'>
+	{%csrf_token%}
+	{{form.as_div}}
+	<input type="submit" value='submit' >
+	
+</form>
+{%endif%}
 {%endblock%}
