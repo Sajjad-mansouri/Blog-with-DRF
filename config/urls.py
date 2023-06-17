@@ -6,6 +6,7 @@ from django.conf.urls.static import static
 from django.contrib.sitemaps import views
 from blog.views import ContactView
 from blog.sitemaps import BlogSitemap,StaticViewSitemap
+from blog.feeds import BlogFeed
 
 
 sitemaps={
@@ -18,6 +19,8 @@ urlpatterns = [
     path('contact/',ContactView.as_view(),name='contact'),
     path('account/',include('django.contrib.auth.urls')),
     path('profile/',include('accounts.urls')),
+    path('feeds/',BlogFeed(),name='feeds'),
+
     #sitemap
     path(
         "sitemap.xml",

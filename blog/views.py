@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView,DetailView
+from django.views.generic import ListView,DetailView,CreateView
 from django.views.generic import FormView
 from django.urls import reverse_lazy,reverse
 from django.shortcuts import render
@@ -63,6 +63,8 @@ class ContactView(FormView):
 	form_class=ContactForm
 	template_name='blog/contact-form.html'
 	success_url = reverse_lazy('blog:articles-list')
+
+
 
 
 
