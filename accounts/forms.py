@@ -29,4 +29,4 @@ class AuthorForm(forms.ModelForm):
 
 	class Meta:
 		model=get_user_model()
-		fields=['first_name','last_name','username','email']
+		fields=['first_name','last_name','username','email','profile_image']

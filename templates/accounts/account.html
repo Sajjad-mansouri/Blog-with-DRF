@@ -19,6 +19,7 @@ Update {{request.user}} Account
 		<th>last name</th>
 		<th>username</th>
 		<th>email</th>
+		<th>image</th>
 	</tr>
 
 	<tr>
@@ -26,13 +27,16 @@ Update {{request.user}} Account
 		<td>{{object.last_name}}</td>
 		<td>{{object.username}}</td>
 		<td>{{object.email}}</td>
+		<td><img src="{{object.profile_image.url}}" width='150'></td>
+
+
 	</tr>
 
 </table>
 {%else%}
 <h1>Update Account:</h1>
 <a href="{%url 'account:account-detail'%}">back</a>
-<form method='post'>
+<form method='post' enctype="multipart/form-data">
 	{%csrf_token%}
 	{{form.as_div}}
 	<input type="submit" value='submit' >
