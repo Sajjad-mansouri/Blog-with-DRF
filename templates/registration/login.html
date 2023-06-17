@@ -12,6 +12,7 @@ Login
     {% csrf_token %}
     {{form.as_div}}
     <input type="submit" value='login'>
+    <a href="{%url 'register'%}">register</a>
     
 
 </form>
