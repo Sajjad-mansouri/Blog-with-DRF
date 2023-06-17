@@ -8,6 +8,7 @@ class AuthorMixin:
 		self.object=form.save(commit=False)
 		self.object.author=self.request.user
 		self.object.save()
+		form.save_m2m()
 		return redirect('account:profile')
 
 	def get_form_kwargs(self):
