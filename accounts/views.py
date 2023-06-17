@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from blog.models import ArticleModel
 from .forms import ArticleForm
+from .mixins import AuthorMixin
 
 
 class ProfileView(LoginRequiredMixin,TemplateView):
@@ -15,31 +16,19 @@ class ProfileView(LoginRequiredMixin,TemplateView):
 
 class ProfileArticleList(LoginRequiredMixin,ListView):
 	template_name='accounts/articles-list.html'
-	def get_queryset(self):
-		return ArticleModel.publish_manager.filter(author=self.request.user)
 
 
-class CreateArticle(LoginRequiredMixin,CreateView):
+
+class CreateArticle(LoginRequiredMixin,AuthorMixin,CreateView):
 	model=ArticleModel
 	template_name='blog/create-update-article.html'
 	success_url=reverse_lazy('account:profile')
 	form_class=ArticleForm
 
-	def form_valid(self,form):
-		self.object=form.save(commit=False)
-		self.object.author=self.request.user
-		self.object.save()
-		return redirect('account:profile')
-
-	def get_form_kwargs(self):
-		kwargs = super().get_form_kwargs()
-		kwargs.update({'request':self.request})
-		return kwargs
 
 
-class UpdateArticle(LoginRequiredMixin,UpdateView):
+
+class UpdateArticle(LoginRequiredMixin,AuthorMixin,UpdateView):
 	template_name='blog/create-update-article.html'
-	fields='__all__'
-	def get_queryset(self):
+	form_class=ArticleForm
 
-		return ArticleModel.publish_manager.filter(author=self.request.user)
