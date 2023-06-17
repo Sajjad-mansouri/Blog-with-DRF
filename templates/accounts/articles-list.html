@@ -1,0 +1,29 @@
+{%extends 'base.html'%}
+{%block title%}
+Article list:
+{%endblock%}
+
+{%block content%}
+	<a href="{%url 'account:create-article'%}">create article</a>
+
+<table>
+	<tr>
+		<th>title</th>
+		<th>author</th>
+		<th>slug</th>
+		<th>image</th>
+		<th>published</th>
+		<th>status</th>
+	</tr>
+	{%for object in object_list%}
+	<tr>
+		<td>{{object.title}}</td>
+		<td>{{object.author}}</td>
+		<td>{{object.slug}}</td>
+		<td>{{object.image}}</td>
+		<td>{{object.published}}</td>
+		<td>{{object.status}}</td>
+	</tr>
+	{%endfor%}
+</table>
+{%endblock%}
