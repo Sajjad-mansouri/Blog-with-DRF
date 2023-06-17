@@ -7,6 +7,7 @@ from django.contrib.sitemaps import views
 from blog.views import ContactView
 from blog.sitemaps import BlogSitemap,StaticViewSitemap
 from blog.feeds import BlogFeed
+from users.views import RegisterUser
 
 
 sitemaps={
@@ -35,6 +36,7 @@ urlpatterns = [
         name="django.contrib.sitemaps.views.sitemap",
         
         ),
+    path('register/',RegisterUser.as_view(),name='register')
 
 
 ]
