@@ -25,3 +25,8 @@ class CreateArticle(CreateView):
 		self.object.author=self.request.user
 		self.object.save()
 		return redirect('account:profile')
+
+	def get_form_kwargs(self):
+		kwargs = super().get_form_kwargs()
+		kwargs.update({'request':self.request})
+		return kwargs
