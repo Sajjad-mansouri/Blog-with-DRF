@@ -1,0 +1,14 @@
+{% load i18n %}
+{% blocktranslate %}You're receiving this email because for finishing registration at 
+{{ site_name }} you must active with below link.{% endblocktranslate %}
+
+{% translate "Please go to the following page and choose a new password:" %}
+
+{{current_site}}/{% url 'password_reset_confirm' uidb64=uid token=token %}
+{% translate 'Your username, in case you’ve forgotten:' %} {{ user.get_username }}
+
+{% translate "Thanks for using our site!" %}
+
+{% blocktranslate %}The {{ site_name }} team{% endblocktranslate %}
+
+
