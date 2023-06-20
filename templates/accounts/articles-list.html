@@ -7,6 +7,7 @@ Article list:
 	<a href="{%url 'account:create-article'%}">create article</a>
 
 <table>
+	{%if object_list%}
 	<tr>
 		<th>title</th>
 		<th>author</th>
@@ -14,7 +15,12 @@ Article list:
 		<th>image</th>
 		<th>published</th>
 		<th>status</th>
+
 	</tr>
+	{%else%}
+	<h1>there is no content</h1>
+	
+	{%endif%}
 	{%for object in object_list%}
 	<tr>
 		<td><a href="{%url 'account:update-article' object.pk%}">{{object.title}}</a></td>
@@ -27,6 +33,10 @@ Article list:
 		{%endif%}
 		<td>{{object.published}}</td>
 		<td>{{object.status}}</td>
+		{%if request.user.is_superuser%}
+		<td><a href="{%url 'account:article-delete' object.pk %}">delete</a></td>
+		{%endif%}
+		
 	</tr>
 	{%endfor%}
 </table>

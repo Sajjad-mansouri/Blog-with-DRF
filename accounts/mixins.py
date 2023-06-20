@@ -18,6 +18,12 @@ class AuthorDispatch:
 			return super().dispatch(request,*args,**kwargs)
 		else:
 			raise Http404
+class SuperUserDispatch:
+	def dispatch(self,request,*args,**kwargs):
+		if  request.user.is_superuser:
+			return super().dispatch(request,*args,**kwargs)
+		else:
+			raise Http404	
 class AuthorQueryset(AuthorDispatch):
 	def get_queryset(self):
 		if self.request.user.is_superuser:

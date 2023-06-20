@@ -1,13 +1,13 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import CreateView,ListView,UpdateView,DetailView
+from django.views.generic import CreateView,ListView,UpdateView,DetailView,DeleteView
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from django.contrib.auth import get_user_model
 from blog.models import ArticleModel
 from .forms import ArticleForm,AuthorForm
-from .mixins import AuthorMixin,AuthorQueryset,RequestFormKwarg
+from .mixins import AuthorMixin,AuthorQueryset,RequestFormKwarg,SuperUserDispatch
 
 
 class ProfileView(LoginRequiredMixin,TemplateView):
@@ -44,3 +44,9 @@ class AccountUpdate(LoginRequiredMixin,RequestFormKwarg,UpdateView):
 	success_url=reverse_lazy('account:account-detail')
 	def get_object(self):
 			return get_user_model().objects.get(username=self.request.user.username)
+
+
+class ArticleDelete(LoginRequiredMixin,SuperUserDispatch,DeleteView):
+	template_name='accounts/article_confim_delete.html'
+	model=ArticleModel
+	success_url=reverse_lazy('account:articles-list')
