@@ -8,12 +8,13 @@ Profile:My Articles
 
 {%block content%}
 <div class ='profile-menu'>
+	{%if request.user.is_author or request.user.is_superuser%}
 	<a href="{%url 'account:articles-list'%}">article list</a>
-
+	{%endif%}
 	<a href="{%url 'account:account-detail' %}">account</a>
 
 </div>
-<h1>My Articles</h1>
+
 
 
 {%endblock%}

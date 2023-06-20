@@ -20,7 +20,11 @@ Article list:
 		<td><a href="{%url 'account:update-article' object.pk%}">{{object.title}}</a></td>
 		<td>{{object.author}}</td>
 		<td>{{object.slug}}</td>
-		<td>{{object.image}}</td>
+		{%if object.image%}
+		<td><img src="{{object.image.url}}" width='150'></td>
+		{%else%}
+		<td>no image found</td>
+		{%endif%}
 		<td>{{object.published}}</td>
 		<td>{{object.status}}</td>
 	</tr>

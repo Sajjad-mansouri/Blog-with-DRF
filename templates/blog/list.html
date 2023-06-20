@@ -17,7 +17,7 @@ Articles
 {%endif%}
 {%for object in object_list%}
 {%if object.image%}
-<img src="{{object.image.url}}">
+<img src="{{object.image.url}}" width="200">
 {%endif%}
 <h1><a href="{%url 'blog:article-detail' object.slug %}">{{object.title}}</a></h1>
 <p>{{object.published}} by {{object.author}}</p>

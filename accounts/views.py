@@ -17,9 +17,6 @@ class ProfileView(LoginRequiredMixin,TemplateView):
 
 class ProfileArticleList(LoginRequiredMixin,AuthorQueryset,ListView):
 	template_name='accounts/articles-list.html'
-	def get_queryset(self):
-		return ArticleModel.publish_manager.filter(author=self.request.user)
-
 
 
 class CreateArticle(LoginRequiredMixin,AuthorMixin,CreateView):

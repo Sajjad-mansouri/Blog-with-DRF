@@ -27,7 +27,11 @@ Update {{request.user}} Account
 		<td>{{object.last_name}}</td>
 		<td>{{object.username}}</td>
 		<td>{{object.email}}</td>
+		{% if object.profile_image%}
 		<td><img src="{{object.profile_image.url}}" width='150'></td>
+		{%else%}
+		no image profile
+		{%endif%}
 
 
 	</tr>
