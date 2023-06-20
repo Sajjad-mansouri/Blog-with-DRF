@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+
+{%block title%}
+{{title}}
+{%endblock%}
+
+
+{%block content%}
+{%if validlink%}
+<p>registration succussfully is done</p>
+<a href="{%url 'login'%}">login</a>
+{%else%}
+<p>registration unsuccessfully</p>
+<a href="{%url 'user:register'%}">registration</a>
+{%endif%}
+
+{%endblock%}

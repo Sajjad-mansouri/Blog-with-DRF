@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+
+{%block title%}
+register done
+{%endblock%}
+
+
+{%block content%}
+<h1>Registratin done!</h1>
+<p>activation sent to your mail, for access to your accout please activate</p>
+<a href="{%url 'blog:articles-list'%}">home</a>
+<a href="{%url 'login'%}">login</a>
+<a href="{%url 'user:register'%}">register</a>
+
+
+
+{%endblock%}
