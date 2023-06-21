@@ -13,6 +13,7 @@ from django.utils.encoding import force_bytes,force_str
 from django.utils.encoding import force_bytes
 from django.http import Http404
 from .forms import UserRegisterForm
+from users.tasks import mail_send
 
 default_token_generator= PasswordResetTokenGenerator()
 
@@ -44,8 +45,7 @@ class RegisterUser(CreateView):
 			'token':token
 			})
 		to_email=form.cleaned_data.get('email')
-		email=EmailMessage(mail_subject,message,to=[to_email])
-		email.send()
+		mail_send.delay(mail_subject,message,to_email)
 		return redirect('user:register-done')
 
 class RegisterDone(TemplateView):
