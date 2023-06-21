@@ -4,6 +4,13 @@ Article list:
 {%endblock%}
 
 {%block content%}
+<div class="messages">
+{% for message in messages %}
+<p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{message}}
+</p>
+{% endfor %}
+</div>
+
 	<a href="{%url 'account:create-article'%}">create article</a>
 
 <table>

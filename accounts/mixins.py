@@ -1,6 +1,6 @@
 from django.shortcuts import redirect
 from blog.models import ArticleModel
-from django.http import Http404
+from django.http import Http404,HttpResponseRedirect
 
 
 
@@ -40,7 +40,7 @@ class AuthorMixin(AuthorDispatch,RequestFormKwarg):
 		self.object.author=self.request.user
 		self.object.save()
 		form.save_m2m()
-		return redirect('account:profile')
+		return HttpResponseRedirect(self.get_success_url())
 
 
 
