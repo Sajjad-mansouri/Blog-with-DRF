@@ -47,6 +47,9 @@ INSTALLED_APPS = [
     #third party app
     'taggit',
 
+    #DRF
+    'rest_framework',
+
 ]
 SITE_ID = 1
 MIDDLEWARE = [
