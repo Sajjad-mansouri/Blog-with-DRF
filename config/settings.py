@@ -49,7 +49,9 @@ INSTALLED_APPS = [
 
     #DRF
     'rest_framework',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    #Dj-Rest-Auth
+    'dj_rest_auth',
 
 ]
 SITE_ID = 1
@@ -176,3 +178,10 @@ REST_FRAMEWORK = {
 
     ]
 }
+
+
+#Dj-Rest-Auth
+# REST_AUTH = {
+#     'USE_JWT': True,
+#     'JWT_AUTH_COOKIE': 'jwt-auth',
+# }

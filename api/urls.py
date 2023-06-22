@@ -12,6 +12,7 @@ urlpatterns=[
 
 	#authentication
 	path('api-token-auth/', auth_views.obtain_auth_token),
+	path('dj-rest-auth/', include('dj_rest_auth.urls')),
 
 	#custom view
 	path('destroy-token/',views.DestroyToken.as_view(),name='destroy-token'),
