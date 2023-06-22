@@ -2,6 +2,7 @@ from django.shortcuts import render
 from rest_framework import generics 
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model
+from rest_framework.permissions import IsAdminUser
 from .serializers import ArticleSerializer,UserSerializer
 from blog.models import ArticleModel
 
@@ -30,7 +31,10 @@ class ArticleAPIDetail(generics.RetrieveAPIView):
 class UserAPIList(generics.ListCreateAPIView):
 	queryset=get_user_model().objects.all()
 	serializer_class = UserSerializer
+	permission_classes=[IsAdminUser]
 
 class UserAPIDetail(generics.RetrieveAPIView):
 	queryset=get_user_model().objects.all()
 	serializer_class = UserSerializer
+	permission_classes=[IsAdminUser]
+	

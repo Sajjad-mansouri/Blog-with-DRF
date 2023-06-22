@@ -6,7 +6,9 @@ urlpatterns=[
 	path('article/<slug:slug>/',views.ArticleAPIDetail.as_view(),name='article-Detail'),
 
 	#user
-	path('user/<int:pk>/',views.UserAPIDetail.as_view(),name='user-Detail'),
+	path('users/',views.UserAPIList.as_view(),name='user-list'),
+	path('user/<int:pk>/',views.UserAPIDetail.as_view(),name='user-detail'),
+
 
 
 

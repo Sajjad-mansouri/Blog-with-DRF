@@ -160,3 +160,11 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 #celery settings
 CELERY_BROKER_URL='redis://localhost:6379'
 CELERY_RESULT_BACKEND='redis://localhost:6379'
+
+
+#DRF
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}
