@@ -52,6 +52,11 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     #Dj-Rest-Auth
     'dj_rest_auth',
+    #registration with Dj-Rest_Auth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',
 
 ]
 SITE_ID = 1
@@ -171,8 +176,9 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
 
-        'rest_framework.authentication.TokenAuthentication',
+        # 'rest_framework.authentication.TokenAuthentication',
 
 
 
