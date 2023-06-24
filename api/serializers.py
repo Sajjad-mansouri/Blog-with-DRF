@@ -2,7 +2,14 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from blog.models import ArticleModel
 
+
+class AuthorAPISerializer(serializers.ModelSerializer):
+	class Meta:
+		model=get_user_model()
+		fields=['username','first_name','last_name']
+
 class ArticleSerializer(serializers.ModelSerializer):
+	author=AuthorAPISerializer()
 	class Meta:
 		model=ArticleModel
 		exclude=['created','updated']
