@@ -35,11 +35,11 @@ from blog.models import ArticleModel
 
 class ArticleAPIViewset(viewsets.ModelViewSet):
 	queryset=ArticleModel.objects.filter(status=True)
- 	serializer_class = ArticleSerializer
- 	lookup_field='slug'
- 	# permission_classes=[IsAuthorOrReadOnly]
- 	def get_permissions(self):
- 		return IsAuthorOrReadOnly
+	serializer_class = ArticleSerializer
+	lookup_field='slug'
+	# permission_classes=[IsAuthorOrReadOnly]
+	def get_permissions(self):
+		return [IsAuthorOrReadOnly()]
 
 
 
@@ -57,7 +57,7 @@ class ArticleAPIViewset(viewsets.ModelViewSet):
 class UserAPIViewset(viewsets.ModelViewSet):
 	queryset=get_user_model().objects.all()
 	serializer_class = UserSerializer
- 	permission_classes=[IsSuperUserOrAdminReadOnly]
+	permission_classes=[IsSuperUserOrAdminReadOnly]
 
 
 

@@ -1,15 +1,24 @@
 from django.urls import path,include
 from rest_framework.authtoken import views as auth_views
 from rest_framework_simplejwt import views as jwt_views
+from rest_framework import routers
 from . import views
+
+router = routers.SimpleRouter()
+router.register(r'articles', views.ArticleAPIViewset)
+router.register(r'users', views.UserAPIViewset)
+
 urlpatterns=[
 	#blog
-	path('',views.ArticleAPIList.as_view(),name='article-list'),
-	path('article/<slug:slug>/',views.ArticleAPIDetail.as_view(),name='article-Detail'),
+	# path('',views.ArticleAPIList.as_view(),name='article-list'),
+	# path('article/<slug:slug>/',views.ArticleAPIDetail.as_view(),name='article-Detail'),
 
 	#user
-	path('users/',views.UserAPIList.as_view(),name='user-list'),
-	path('user/<int:pk>/',views.UserAPIDetail.as_view(),name='user-detail'),
+	# path('users/',views.UserAPIList.as_view(),name='user-list'),
+	# path('user/<int:pk>/',views.UserAPIDetail.as_view(),name='user-detail'),
+
+	#router
+	path('',include(router.urls)),
 
 	#authentication
 
