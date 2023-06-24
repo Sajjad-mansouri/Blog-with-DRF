@@ -2,7 +2,9 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from blog.models import ArticleModel
 
-
+class AuthorField(serializers.RelatedField):
+	def to_representation(self,value):
+		return f'**{value.username}**'
 class AuthorAPISerializer(serializers.ModelSerializer):
 	class Meta:
 		model=get_user_model()
@@ -11,7 +13,8 @@ class AuthorAPISerializer(serializers.ModelSerializer):
 class ArticleSerializer(serializers.ModelSerializer):
 	# author=AuthorAPISerializer()
 	# author=serializers.HyperlinkedIdentityField(view_name='users-detail',)
-	author=serializers.CharField(source='author.username',read_only=True)
+	# author=serializers.CharField(source='author.username',read_only=True)
+	author=AuthorField(read_only=True)
 
 	class Meta:
 		model=ArticleModel
