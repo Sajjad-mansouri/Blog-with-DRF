@@ -34,12 +34,23 @@ from blog.models import ArticleModel
 # 		return obj
 
 class ArticleAPIViewset(viewsets.ModelViewSet):
-	queryset=ArticleModel.objects.filter(status=True)
+	#queryset=ArticleModel.objects.filter(status=True)
 	serializer_class = ArticleSerializer
 	lookup_field='slug'
 	# permission_classes=[IsAuthorOrReadOnly]
 	def get_permissions(self):
 		return [IsAuthorOrReadOnly()]
+
+	def get_queryset(self):
+		queryset=ArticleModel.objects.all()
+		status=self.request.query_params.get('status')
+		author=self.request.query_params.get('author')
+		if status is not None:
+			queryset=queryset.filter(status=status)
+		if author is not None:
+			queryset=queryset.filter(author=author)
+
+		return queryset
 
 
 
