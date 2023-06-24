@@ -57,6 +57,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
+    #filterinf
+     'django_filters',
 
 ]
 SITE_ID = 1
@@ -182,7 +184,9 @@ REST_FRAMEWORK = {
 
 
 
-    ]
+    ],
+    #filter backend
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 }
 
 
@@ -194,3 +198,8 @@ REST_AUTH = {
     'JWT_AUTH_SECURE_REFRESH_TOKEN': False,  # Set this to True if using HTTPS in production
     'JWT_AUTH_COOKIE_HTTPONLY': True,  # Set this to True for added security
 }
+
+
+
+
+
