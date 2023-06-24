@@ -186,8 +186,11 @@ REST_FRAMEWORK = {
 }
 
 
-#Dj-Rest-Auth
-# REST_AUTH = {
-#     'USE_JWT': True,
-#     'JWT_AUTH_COOKIE': 'jwt-auth',
-# }
+#Dj-Rest-Auth with jwt
+REST_AUTH = {
+    'USE_JWT': True,
+    'JWT_AUTH_COOKIE':'my-app-auth',
+    'JWT_AUTH_REFRESH_COOKIE':'refresh',
+    'JWT_AUTH_SECURE_REFRESH_TOKEN': False,  # Set this to True if using HTTPS in production
+    'JWT_AUTH_COOKIE_HTTPONLY': True,  # Set this to True for added security
+}
