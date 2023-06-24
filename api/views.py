@@ -39,7 +39,9 @@ class ArticleAPIViewset(viewsets.ModelViewSet):
 	serializer_class = ArticleSerializer
 	lookup_field='slug'
 	filterset_fields=['author','status']
-	filter_backends = [filters.SearchFilter]
+	filter_backends = [filters.SearchFilter,filters.OrderingFilter]
+	ordering_fields=['title','published']
+	ordering='-published'
 	search_fields=['title','=author__username','=author__last_name','=author__first_name','content']
 	# permission_classes=[IsAuthorOrReadOnly]
 	def get_permissions(self):
