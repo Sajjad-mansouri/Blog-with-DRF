@@ -9,7 +9,9 @@ class AuthorAPISerializer(serializers.ModelSerializer):
 		fields=['username','first_name','last_name']
 
 class ArticleSerializer(serializers.ModelSerializer):
-	author=AuthorAPISerializer()
+	# author=AuthorAPISerializer()
+	author=serializers.HyperlinkedIdentityField(view_name='users-detail')
+
 	class Meta:
 		model=ArticleModel
 		exclude=['created','updated']

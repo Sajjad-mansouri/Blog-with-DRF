@@ -6,7 +6,8 @@ from . import views
 
 router = routers.SimpleRouter()
 router.register(r'articles', views.ArticleAPIViewset,basename='articles')
-router.register(r'users', views.UserAPIViewset)
+router.register(r'users', views.UserAPIViewset,basename='users')
+
 
 urlpatterns=[
 	#blog
