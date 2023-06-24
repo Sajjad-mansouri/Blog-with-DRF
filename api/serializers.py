@@ -10,7 +10,8 @@ class AuthorAPISerializer(serializers.ModelSerializer):
 
 class ArticleSerializer(serializers.ModelSerializer):
 	# author=AuthorAPISerializer()
-	author=serializers.HyperlinkedIdentityField(view_name='users-detail')
+	# author=serializers.HyperlinkedIdentityField(view_name='users-detail',)
+	author=serializers.CharField(source='author.username',read_only=True)
 
 	class Meta:
 		model=ArticleModel
