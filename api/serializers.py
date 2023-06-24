@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
+from drf_dynamic_fields import DynamicFieldsMixin
 from blog.models import ArticleModel
 
 class AuthorField(serializers.RelatedField):
@@ -10,7 +11,7 @@ class AuthorAPISerializer(serializers.ModelSerializer):
 		model=get_user_model()
 		fields=['username','first_name','last_name']
 
-class ArticleSerializer(serializers.ModelSerializer):
+class ArticleSerializer(DynamicFieldsMixin,serializers.ModelSerializer):
 	# author=AuthorAPISerializer()
 	# author=serializers.HyperlinkedIdentityField(view_name='users-detail',)
 	# author=serializers.CharField(source='author.username',read_only=True)
