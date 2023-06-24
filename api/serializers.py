@@ -7,6 +7,12 @@ class ArticleSerializer(serializers.ModelSerializer):
 		model=ArticleModel
 		exclude=['created','updated']
 
+	def validate_title(self,value):
+		filter_list=['forbidden']
+		for item in filter_list:
+			if item in value:
+				raise serializers.ValidationError(f"{item} don't allowed")
+
 class UserSerializer(serializers.ModelSerializer):
 	class Meta:
 		model=get_user_model()
