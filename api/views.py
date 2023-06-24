@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework import generics 
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser,IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status,viewsets
@@ -37,6 +37,10 @@ class ArticleAPIViewset(viewsets.ModelViewSet):
 	queryset=ArticleModel.objects.filter(status=True)
  	serializer_class = ArticleSerializer
  	lookup_field='slug'
+ 	# permission_classes=[IsAuthorOrReadOnly]
+ 	def get_permissions(self):
+ 		return IsAuthorOrReadOnly
+
 
 
 
@@ -53,6 +57,7 @@ class ArticleAPIViewset(viewsets.ModelViewSet):
 class UserAPIViewset(viewsets.ModelViewSet):
 	queryset=get_user_model().objects.all()
 	serializer_class = UserSerializer
+ 	permission_classes=[IsSuperUserOrAdminReadOnly]
 
 
 
