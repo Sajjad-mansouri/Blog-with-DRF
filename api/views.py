@@ -6,6 +6,7 @@ from rest_framework.permissions import IsAdminUser,IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status,viewsets
+from rest_framework import filters
 from .permissions import IsSuperUserOrAdminReadOnly,IsAuthorOrReadOnly,IsSuperUser
 from .serializers import ArticleSerializer,UserSerializer
 from blog.models import ArticleModel
@@ -38,6 +39,8 @@ class ArticleAPIViewset(viewsets.ModelViewSet):
 	serializer_class = ArticleSerializer
 	lookup_field='slug'
 	filterset_fields=['author','status']
+	filter_backends = [filters.SearchFilter]
+	search_fields=['title','=author__username','=author__last_name','=author__first_name','content']
 	# permission_classes=[IsAuthorOrReadOnly]
 	def get_permissions(self):
 		return [IsAuthorOrReadOnly()]
